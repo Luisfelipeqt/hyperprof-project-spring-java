@@ -1,27 +1,22 @@
 package br.com.treinaweb.hyperprof.api.common.dtos;
 
-import java.time.LocalDateTime;
-
 import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
+
+import java.util.List;
+import java.util.Map;
 
 @Data
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @JsonNaming(SnakeCaseStrategy.class)
-public class ErrorResponse {
+public class ValidationErrorResponse extends ErrorResponse{
 
-    private int status;
-    private String message;
-    private String error;
-    private String cause;
-    private LocalDateTime timestamp;
+    private Map<String, List<String>> errors;
+
 
 }
