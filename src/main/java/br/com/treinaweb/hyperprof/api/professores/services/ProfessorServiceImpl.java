@@ -2,6 +2,7 @@ package br.com.treinaweb.hyperprof.api.professores.services;
 
 import java.util.List;
 
+import br.com.treinaweb.hyperprof.api.professores.dtos.ProfessorRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.treinaweb.hyperprof.api.professores.dtos.ProfessorResponse;
@@ -30,6 +31,13 @@ public class ProfessorServiceImpl implements ProfessorService {
         return professorRepository.findById(professorId)
             .map(professorMapper::toProfessorResponse)
             .orElseThrow(ProfessorNotFoundException::new);
+    }
+
+    @Override
+    public ProfessorResponse cadastrarProfessor(ProfessorRequest professorRequest) {
+        var professorParaCadastrar = professorMapper.toProfessor(professorRequest);
+        var professorCadastrado = professorRepository.save(professorParaCadastrar);
+        return professorMapper.toProfessorResponse(professorCadastrado);
     }
 
 }

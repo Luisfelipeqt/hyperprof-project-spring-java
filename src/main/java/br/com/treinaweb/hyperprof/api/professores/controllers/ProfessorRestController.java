@@ -2,10 +2,9 @@ package br.com.treinaweb.hyperprof.api.professores.controllers;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import br.com.treinaweb.hyperprof.api.professores.dtos.ProfessorRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.treinaweb.hyperprof.api.common.routes.ApiRoutes;
 import br.com.treinaweb.hyperprof.api.professores.dtos.ProfessorResponse;
@@ -30,4 +29,9 @@ public class ProfessorRestController {
         return professorService.buscarProfessorPorId(professorId);
     }
 
+    @PostMapping(ApiRoutes.CADASTRAR_PROFESSOR)
+    @ResponseStatus(HttpStatus.CREATED)
+    public ProfessorResponse cadastrarProfessor(@RequestBody ProfessorRequest professorRequest) {
+        return professorService.cadastrarProfessor(professorRequest);
+    }
 }
