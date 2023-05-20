@@ -3,6 +3,7 @@ package br.com.treinaweb.hyperprof.api.professores.controllers;
 import java.util.List;
 
 import br.com.treinaweb.hyperprof.api.professores.dtos.ProfessorRequest;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +32,7 @@ public class ProfessorRestController {
 
     @PostMapping(ApiRoutes.CADASTRAR_PROFESSOR)
     @ResponseStatus(HttpStatus.CREATED)
-    public ProfessorResponse cadastrarProfessor(@RequestBody ProfessorRequest professorRequest) {
+    public ProfessorResponse cadastrarProfessor(@RequestBody @Valid ProfessorRequest professorRequest) {
         return professorService.cadastrarProfessor(professorRequest);
     }
 }
